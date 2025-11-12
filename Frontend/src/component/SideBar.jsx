@@ -29,16 +29,14 @@ export default function SideBar() {
 
 
     let response = await fetch(`https://alsf2pilju.eu.loclx.io/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
-    console.log("New value:", response);
 
-    const txt = await response.text();
-    console.log("New value:", txt);
+
 
     let data = await response.json();
     setData(data);
     setValue(newvalue);
     setdatetimeValue(newvalue)
-    console.log("New value:", data);
+
 
 
 
@@ -48,12 +46,9 @@ export default function SideBar() {
       let DateDay = new Date(value);
 
       let response = await fetch(`https://alsf2pilju.eu.loclx.io/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
-      console.log("New value:", response);
-      const txt = await response.text();
-      console.log("New value:", txt);
-      let data = await response.json()
+    
       setData(data);
-      console.log("New value:", data);
+     
 
     }
     fetchDate();
