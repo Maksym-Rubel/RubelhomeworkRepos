@@ -4,15 +4,15 @@ import { refreshService } from "./refreshToken.service";
 import { CounterContext } from "../context/currenthome";
 import { useContext } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
 
-const { API_URL_CON } = useContext(CounterContext);
+// const { API_URL_CON } = useContext(CounterContext);
 
 export const returnUserclass =
 {
     async returnUser() {
         try {
-            const res = await axios.post(`${API_URL_CON}/api/Account/Refresh?token=${refreshService.get()}`)
+            const res = await axios.post(`https://lciz5txpis.eu.loclx.io/api/Account/Refresh?token=${refreshService.get()}`)
             // accountService.logout();
             console.log(res);
             accountService.login(res.data.accesessToken, res.data.refreshToken);
