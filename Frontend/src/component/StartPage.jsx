@@ -16,7 +16,8 @@ export default function StartPage() {
   const [ObjName, SetObjName] = useState([]);
   const { datetimeValue, setdatetimeValue } = useContext(CounterContext);
   const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu } = useContext(CounterContext);
-  const API_URL = process.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => { GetItems() }, [Email])
   useEffect(() => {
     // console.log("Edit", EditMenu)

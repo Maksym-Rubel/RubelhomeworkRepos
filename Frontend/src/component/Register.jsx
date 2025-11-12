@@ -11,7 +11,8 @@ export default function Register() {
     const [PassValueDef, setPassValueDef] = useState("");
 
     const [RegistExeption, setRegistExeption] = useState("");
-    const API_URL = process.env.VITE_API_URL;
+    const API_URL = import.meta.env.VITE_API_URL;
+
 
     const navigate = useNavigate();
     async function register() {
@@ -86,7 +87,7 @@ export default function Register() {
                         <div className='Regist-class'><p>Уже маєш акаунт? <Link to="/" className="Link-class"><span>Увійти</span></Link></p></div>
 
 
-                      
+
 
 
 

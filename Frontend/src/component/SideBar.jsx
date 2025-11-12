@@ -15,24 +15,25 @@ export default function SideBar() {
   const [value, setValue] = React.useState(dayjs().add(1, 'day'));
   const { datetimeValue, setdatetimeValue } = useContext(CounterContext);
   const [FirstRaz, setFirstRaz] = React.useState(true);
- 
 
-  const API_URL = process.env.VITE_API_URL;
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   const [Datas, setData] = React.useState([]);
 
   async function DateOnChange(newvalue) {
 
-      let newDate = newvalue.format("YYYY-MM-DD");
-      let DateDay = new Date(newDate);
+    let newDate = newvalue.format("YYYY-MM-DD");
+    let DateDay = new Date(newDate);
 
-  
-      let response = await fetch(`${API_URL}api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
-      let data = await response.json()
-      setData(data);
-      setValue(newvalue);
-      setdatetimeValue(newvalue)
-    
+
+    let response = await fetch(`${API_URL}api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
+    let data = await response.json()
+    setData(data);
+    setValue(newvalue);
+    setdatetimeValue(newvalue)
+
 
 
   }
@@ -47,7 +48,7 @@ export default function SideBar() {
     fetchDate();
   }, [value]);
 
-  useEffect(() => {DateOnChange(value)},[])
+  useEffect(() => { DateOnChange(value) }, [])
 
   return (
     <div className='SideBar-class'>

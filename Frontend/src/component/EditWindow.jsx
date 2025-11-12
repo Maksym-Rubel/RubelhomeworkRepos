@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function EditWindow() {
     const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu,ItemTitle, setItemTitle,ItemIdItem, setItemIdItem } = useContext(CounterContext);
 
-    const API_URL = process.env.VITE_API_URL;
+    const API_URL = import.meta.env.VITE_API_URL;
     const [ObjectFet, setObjectFet] = useState([]);
 
     useEffect(() => {
