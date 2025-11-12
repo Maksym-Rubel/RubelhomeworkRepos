@@ -16,7 +16,7 @@ const initialState =
     setItemTitle: () => { },
     ItemIdItem: 0,
     setItemIdItem: () => { },
-    API_URL_CON: "https://alsf2pilju.eu.loclx.io",
+    API_URL_CON: "https://lciz5txpis.eu.loclx.io",
     setAPI_URL_CON: () => { },
 }
 
