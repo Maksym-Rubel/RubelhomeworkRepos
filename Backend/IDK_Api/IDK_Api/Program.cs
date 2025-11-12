@@ -117,7 +117,8 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+app.Urls.Add("http://0.0.0.0:5000");
+app.Urls.Add("https://0.0.0.0:5001");
 using (var scope = app.Services.CreateScope())
 {
 
