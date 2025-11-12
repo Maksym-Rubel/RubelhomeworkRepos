@@ -12,7 +12,7 @@ import { ColorPicker } from '../services/color.service';
 
 export default function OneSubject({ Id, Title, Description, ItemId }) {
     const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu, ItemTitle, setItemTitle,ItemIdItem, setItemIdItem } = useContext(CounterContext);
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.VITE_API_URL;
 
     function FirstLetter(Title) {
         return String(Title).slice(0, 1);

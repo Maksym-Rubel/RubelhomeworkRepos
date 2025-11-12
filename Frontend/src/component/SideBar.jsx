@@ -17,7 +17,7 @@ export default function SideBar() {
   const [FirstRaz, setFirstRaz] = React.useState(true);
  
 
-
+  const API_URL = process.env.VITE_API_URL;
 
   const [Datas, setData] = React.useState([]);
 
@@ -27,7 +27,7 @@ export default function SideBar() {
       let DateDay = new Date(newDate);
 
   
-      let response = await fetch(`http://192.168.1.121:5212/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
+      let response = await fetch(`${API_URL}api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
       let data = await response.json()
       setData(data);
       setValue(newvalue);
@@ -40,7 +40,7 @@ export default function SideBar() {
     async function fetchDate() {
       let DateDay = new Date(value);
 
-      let response = await fetch(`http://192.168.1.121:5212/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
+      let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
       let data = await response.json()
       setData(data);
     }
