@@ -28,7 +28,7 @@ export default function SideBar() {
     let DateDay = new Date(newDate);
 
 
-    let response = await fetch(`https://48454bbf28fe.ngrok-free.app/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
+    let response = await fetch(`https://c7c4e82b0bec.ngrok-free.app/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
     console.log("New value:", response);
 
     const txt = await response.text();
@@ -47,7 +47,7 @@ export default function SideBar() {
     async function fetchDate() {
       let DateDay = new Date(value);
 
-      let response = await fetch(`https://48454bbf28fe.ngrok-free.app/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
+      let response = await fetch(`https://c7c4e82b0bec.ngrok-free.app/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
       console.log("New value:", response);
       const txt = await response.text();
       console.log("New value:", txt);
