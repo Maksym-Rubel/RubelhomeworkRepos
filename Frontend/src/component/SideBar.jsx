@@ -28,7 +28,7 @@ export default function SideBar() {
     let DateDay = new Date(newDate);
 
 
-    let response = await fetch(`${API_URL}api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
+    let response = await fetch(`https://6641f30f331c.ngrok-free.app/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
     let data = await response.json()
     setData(data);
     setValue(newvalue);
@@ -41,7 +41,7 @@ export default function SideBar() {
     async function fetchDate() {
       let DateDay = new Date(value);
 
-      let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
+      let response = await fetch(`https://6641f30f331c.ngrok-free.app/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
       let data = await response.json()
       setData(data);
     }
