@@ -32,7 +32,7 @@ export default function StartPage() {
   //   return getDay + "." + ((getMonth + 1) < 10 ? "0" + (getMonth + 1) : (getMonth + 1));
   // }
   async function GetItems() {
-    var data = await fetch(`${API_URL}/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
+    var data = await fetch(`https://6641f30f331c.ngrok-free.app/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
     var res = await data.json();
     if (res != null) {
       SetRes(res.filter(m => m.isControlWork == false));
