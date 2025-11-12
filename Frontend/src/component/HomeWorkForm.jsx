@@ -59,7 +59,7 @@ export default function HomeWorkForm() {
       IsControlWork: IsControl
     }
     try {
-      var res = await axios.post(`${API_URL}/api/Homework/CreateHomeWork`, homework, {
+      var res = await axios.post(`${API_URL_CON}/api/Homework/CreateHomeWork`, homework, {
         headers: {
           Authorization: `Bearer ${tokenService.get()}`
 
