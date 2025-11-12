@@ -83,6 +83,19 @@
     /* max-width: 100px; */
     transform: scaleX(-1);
 }
+.ImgClass
+{
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    width: clamp(60px, 8vw, 100px);
+    /* max-width: 100px; */
+    transform: scaleX(-1);
+    background-image: url(/public/imgs/TungTungSahur.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 .Fift-class {
     width: 70%;
