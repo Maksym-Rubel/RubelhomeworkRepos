@@ -1,0 +1,187 @@
+.EditBack {
+    position: fixed;
+    width: clamp(300px, 50vw, 1000px);
+    ;
+
+    height: min-content;
+
+    background-color: rgb(255, 255, 255);
+    z-index: 200;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+@media (max-width:1100px) {
+    .EditBack {
+        height: min-content;
+
+    }
+
+    .DivSecond {
+        min-height: 100px;
+
+    }
+}
+
+.Back {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.397);
+    z-index: 190;
+    backdrop-filter: blur(3px);
+}
+
+
+
+.DivSecond {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* background-color: red; */
+
+}
+
+.DivSecond p {
+    font-size: clamp(14px, 2vw, 20px);
+
+}
+
+.Subject-class23 {
+    width: clamp(50px, 10vw, 60px);
+    height: clamp(50px, 10vw, 60px);
+    padding: 5px;
+    box-sizing: border-box;
+    /* background-color: red; */
+}
+
+.SubjectText-class {
+    flex: 1;
+    /* background-color: rgb(159, 146, 146); */
+
+
+}
+
+.Display-class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* background-color: #75d982; */
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+}
+
+.BtnExit {
+    width: 30px;
+    height: 30px;
+    /* background-color: red; */
+    background-image: url(/public/imgs/reject.png);
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: .5;
+}
+
+.SubjectText-class h3 {
+    font-size: clamp(10px, 4vw, 20px);
+
+}
+
+.SubjectText-class p {
+    font-size: clamp(10px, 3vw, 16px);
+    color: #989898;
+}
+
+.CircleName-class {
+    background-color: #bbecc0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.CircleName-class p {
+    text-align: center;
+    line-height: 100%;
+    color: #75d982;
+    font-size: 27px;
+    font-weight: bold;
+
+}
+
+.DivFist {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* background-color: rebeccapurple; */
+    justify-content: center;
+    align-items: center;
+}
+
+.NextBtn {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /* background-color: rebeccapurple; */
+
+}
+
+.EditBtn {
+    width: clamp(30px, 3vw, 40px);
+    height: clamp(30px, 3vw, 40px);
+    background-color: #ffdd0042;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.EditBtn:hover {
+
+    background-color: #ffdd005a;
+
+}
+
+.RemoveBtn {
+    width: clamp(30px, 3vw, 40px);
+    height: clamp(30px, 3vw, 40px);
+    background-color: #ef233b3c;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.RemoveBtn:hover {
+    background-color: #ef233b4a;
+    cursor: pointer;
+}
+
+.Im32 {
+    width: clamp(20px, 2vw, 25px);
+    height: clamp(20px, 2vw, 25px);
+}
+
+.BtnClassEdit {
+    color: black;
+
+}
