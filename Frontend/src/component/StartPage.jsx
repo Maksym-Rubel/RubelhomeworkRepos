@@ -103,7 +103,7 @@ export default function StartPage() {
       <div className={EditMenu ? "StartPage-classEdit" : 'StartPage-class'}>
         <div className='Option-class'>
           <div className='Fift-classNext'>
-            <img src='./public/imgs/TungTungSahur.png'></img>
+            <img src='../public/imgs/TungTungSahur.png'></img>
 
           </div>
           <div className='Fift-class'>
