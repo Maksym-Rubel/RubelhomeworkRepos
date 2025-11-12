@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import "./Register.css"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { CounterContext } from '../context/currenthome';
 
 
 export default function Register() {
     const [EmailValue, setEmailValue] = useState("");
     const [PassValue, setPassValue] = useState("");
     const [PassValueDef, setPassValueDef] = useState("");
-
+    const { API_URL_CON } = useContext(CounterContext);
     const [RegistExeption, setRegistExeption] = useState("");
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -24,7 +25,7 @@ export default function Register() {
 
             }
             try {
-                const res = await axios.post(`${API_URL}/api/Account/register`, user)
+                const res = await axios.post(`${API_URL_CON}/api/Account/register`, user)
                 if (res.status == 200) {
                     navigate("/")
                 }

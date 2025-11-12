@@ -15,7 +15,7 @@ export default function StartPage() {
 
   const [ObjName, SetObjName] = useState([]);
   const { datetimeValue, setdatetimeValue } = useContext(CounterContext);
-  const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu } = useContext(CounterContext);
+  const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu,API_URL_CON } = useContext(CounterContext);
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => { GetItems() }, [Email])
@@ -32,7 +32,7 @@ export default function StartPage() {
   //   return getDay + "." + ((getMonth + 1) < 10 ? "0" + (getMonth + 1) : (getMonth + 1));
   // }
   async function GetItems() {
-    var data = await fetch(`https://6641f30f331c.ngrok-free.app/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
+    var data = await fetch(`${API_URL_CON}/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
     var res = await data.json();
     if (res != null) {
       SetRes(res.filter(m => m.isControlWork == false));
@@ -48,7 +48,7 @@ export default function StartPage() {
 
 
 
-    axios.get(`${API_URL}/api/Items/GetAllItem`, {
+    axios.get(`${API_URL_CON}/api/Items/GetAllItem`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
 

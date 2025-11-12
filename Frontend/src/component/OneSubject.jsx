@@ -11,7 +11,8 @@ import { ColorPicker } from '../services/color.service';
 
 
 export default function OneSubject({ Id, Title, Description, ItemId }) {
-    const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu, ItemTitle, setItemTitle, ItemIdItem, setItemIdItem } = useContext(CounterContext);
+    const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu, ItemTitle, setItemTitle, ItemIdItem, setItemIdItem,API_URL_CON} = useContext(CounterContext);
+
     const API_URL = import.meta.env.VITE_API_URL;
 
 
@@ -24,7 +25,7 @@ export default function OneSubject({ Id, Title, Description, ItemId }) {
 
     function RemoveItem(Id) {
 
-        axios.delete(`${API_URL}/api/Homework/RemoveItem?Id=${Id}`, {
+        axios.delete(`${API_URL_CON}/api/Homework/RemoveItem?Id=${Id}`, {
             headers:
             {
                 Authorization: `Bearer ${tokenService.get()}`

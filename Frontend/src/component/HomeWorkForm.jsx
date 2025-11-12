@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./HomeWorkForm.css"
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import AxiosInstance from '../Interceptors';
 import { tokenService } from '../services/token.service';
 import MessageWindow from './MessageWindow';
+import { CounterContext } from '../context/currenthome';
 export default function HomeWorkForm() {
 
   const [ItemId, SetItemId] = useState(1);
@@ -15,6 +16,7 @@ export default function HomeWorkForm() {
   const [IsControl, SetIsControl] = useState(false);
   const [Message, SetMessage] = useState(false);
   const [MessageError, SetMessageError] = useState(false);
+  const { API_URL_CON } = useContext(CounterContext);
 
 
   const API_URL = import.meta.env.VITE_API_URL;
@@ -22,7 +24,7 @@ export default function HomeWorkForm() {
 
 
   async function GetItems() {
-    axios.get(`${API_URL}/api/Items/GetAllItem`, {
+    axios.get(`${API_URL_CON}/api/Items/GetAllItem`, {
       headers: {
         Authorization: `Bearer ${tokenService.get()}`
 

@@ -10,7 +10,7 @@ export default function Login() {
   const [IsLogin, setIsLogin] = useState(true);
   const [EmailValue, setEmailValue] = useState("");
   const [PassValue, setPassValue] = useState("");
-  const { Email, setEmail } = useContext(CounterContext);
+  const { Email, setEmail,API_URL_CON } = useContext(CounterContext);
 
   // useEffect(() => { console.log("top" ,EmailValue) }, [EmailValue]);
   // useEffect(() => { console.log("top" ,PassValue) }, [PassValue]);
@@ -26,7 +26,7 @@ export default function Login() {
       password: PassValue
     }
 
-    axios.post(`${API_URL}/api/Account/login`, user).then(res => {
+    axios.post(`${API_URL_CON}/api/Account/login`, user).then(res => {
       if (res.status === 200) {
         accountService.login(res.data.accesessToken, res.data.refreshToken, res.data.role);
 

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { accountService } from '../services/account.service';
 import { tokenService } from '../services/token.service';
 export default function HeaderMain1() {
-  const { Email, setEmail } = useContext(CounterContext);
+  const { Email, setEmail,API_URL_CON } = useContext(CounterContext);
   // function LogoutFrom() {
   //   axios.post("http://192.168.1.121:5212/api/Account/logout").then(res => {
   //     if (res.status === 200) {
@@ -23,7 +23,7 @@ export default function HeaderMain1() {
   function LogoutFrom() {
 
 
-    axios.post(`${API_URL}/api/Account/logout`, {
+    axios.post(`${API_URL_CON}/api/Account/logout`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenService.get()}`
