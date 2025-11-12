@@ -33,6 +33,7 @@ export default function SideBar() {
     setData(data);
     setValue(newvalue);
     setdatetimeValue(newvalue)
+    console.log("New value:", data);
 
 
 
@@ -44,6 +45,8 @@ export default function SideBar() {
       let response = await fetch(`https://6641f30f331c.ngrok-free.app/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
       let data = await response.json()
       setData(data);
+      console.log("New value:", data);
+
     }
     fetchDate();
   }, [value]);
