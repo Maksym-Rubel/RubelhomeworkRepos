@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 export default function SideBar() {
   const [value, setValue] = React.useState(dayjs().add(1, 'day'));
-  const { datetimeValue, setdatetimeValue } = useContext(CounterContext);
+  const { datetimeValue, setdatetimeValue,API_URL_CON } = useContext(CounterContext);
   const [FirstRaz, setFirstRaz] = React.useState(true);
 
 
@@ -26,9 +26,9 @@ export default function SideBar() {
 
     let newDate = newvalue.format("YYYY-MM-DD");
     let DateDay = new Date(newDate);
-    console.log("API_URL:", API_URL);
+    console.log("API_URL:", API_URL_CON);
 
-    let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
+    let response = await fetch(`${API_URL_CON}/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
 
 
 
@@ -45,7 +45,7 @@ export default function SideBar() {
     async function fetchDate() {
       let DateDay = new Date(value);
 
-      let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
+      let response = await fetch(`${API_URL_CON}/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
 
       setData(data);
 

@@ -4,7 +4,7 @@ import { ColorPicker } from '../services/color.service'
 import { CounterContext } from '../context/currenthome';
 import axios from 'axios';
 export default function EditWindow() {
-    const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu,ItemTitle, setItemTitle,ItemIdItem, setItemIdItem } = useContext(CounterContext);
+    const { Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu,ItemTitle, setItemTitle,ItemIdItem, setItemIdItem,API_URL_CON } = useContext(CounterContext);
 
     const API_URL = import.meta.env.VITE_API_URL;
     const [ObjectFet, setObjectFet] = useState([]);
@@ -18,7 +18,7 @@ export default function EditWindow() {
     }
     async function getOneHomeWorkItem() {
         try {
-            var res = await axios.get(`${API_URL}/api/Homework/GetOneHomework?id=${ItemIdCt}`)
+            var res = await axios.get(`${API_URL_CON}/api/Homework/GetOneHomework?id=${ItemIdCt}`)
   
             setObjectFet(res.data)
         } catch (error) {

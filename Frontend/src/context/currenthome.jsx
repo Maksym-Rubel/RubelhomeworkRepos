@@ -16,6 +16,8 @@ const initialState =
     setItemTitle: () => { },
     ItemIdItem: 0,
     setItemIdItem: () => { },
+    API_URL_CON: "https://alsf2pilju.eu.loclx.io",
+    setAPI_URL_CON: () => { },
 }
 
 
@@ -29,6 +31,8 @@ export const CounterProvider = ({ children }) => {
     const [EditMenu, setEditMenu] = useState(initialState.EditMenu);
     const [ItemTitle, setItemTitle] = useState(initialState.ItemTitle);
     const [ItemIdItem, setItemIdItem] = useState(initialState.ItemIdItem);
+    const [API_URL_CON, setAPI_URL_CON] = useState(initialState.API_URL_CON);
+
 
 
 
@@ -37,7 +41,7 @@ export const CounterProvider = ({ children }) => {
 
 
     return (
-        <CounterContext.Provider value={{ datetimeValue, setdatetimeValue, Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu, ItemTitle, setItemTitle, ItemIdItem, setItemIdItem }}>
+        <CounterContext.Provider value={{ datetimeValue, setdatetimeValue, Email, setEmail, ItemIdCt, setItemId, EditMenu, setEditMenu, ItemTitle, setItemTitle, ItemIdItem, setItemIdItem,API_URL_CON,setAPI_URL_CON }}>
             {children}
         </CounterContext.Provider>
     );
