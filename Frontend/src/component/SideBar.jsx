@@ -26,7 +26,7 @@ export default function SideBar() {
 
     let newDate = newvalue.format("YYYY-MM-DD");
     let DateDay = new Date(newDate);
-
+    console.log("API_URL:", API_URL);
 
     let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${newDate}&WeekDay=${DateDay.getDay()}`);
 
@@ -46,9 +46,9 @@ export default function SideBar() {
       let DateDay = new Date(value);
 
       let response = await fetch(`${API_URL}/api/Items/GetDayItems?dateTime=${value.format("YYYY-MM-DD")}&WeekDay=${DateDay.getDay()}`);
-    
+
       setData(data);
-     
+
 
     }
     fetchDate();
