@@ -12,7 +12,7 @@ export const returnUserclass =
 {
     async returnUser() {
         try {
-            const res = await axios.post(`https://lciz5txpis.eu.loclx.io/api/Account/Refresh?token=${refreshService.get()}`)
+            const res = await axios.post(`https://stjpd5gwsb.eu.loclx.io/api/Account/Refresh?token=${refreshService.get()}`)
             // accountService.logout();
             console.log(res);
             accountService.login(res.data.accesessToken, res.data.refreshToken);
