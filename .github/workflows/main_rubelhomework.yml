@@ -25,10 +25,9 @@ jobs:
         run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
 
       - name: Build
-        run: dotnet build "Backend/IDK_Api.sln" --configuration Release --no-restore
+        run: dotnet build "Backend/IDK_Api/IDK_Api.sln" --configuration Release --no-restore
 
       - name: Publish
-        # Публікуємо в папку ./published
         run: dotnet publish "Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o ./published --no-build
 
       - name: Upload artifact for deployment job
@@ -68,3 +67,4 @@ jobs:
           slot-name: 'Production'
           # ОТУТ головне: вказуємо шлях до опублікованих файлів
           package: ./published
+
