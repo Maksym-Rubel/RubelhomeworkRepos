@@ -25,7 +25,7 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
 
       - name: Restore
-        run: dotnet restore "Backend/IDK_Api.sln"
+        run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
 
       - name: Build
         run: dotnet build "Backend/IDK_Api.sln" --configuration Release --no-restore
@@ -66,6 +66,7 @@ jobs:
           app-name: 'rubelhomework'
           slot-name: 'Production'
           package: .
+
 
 
 
