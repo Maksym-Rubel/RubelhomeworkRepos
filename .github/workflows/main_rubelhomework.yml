@@ -24,10 +24,14 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
 
-      - name: Restore NuGet packages
-        run: nuget restore "./RubelhomeworkRepos.sln"
-      - name: Publish to folder
-        run: msbuild "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" /p:Configuration=Release /p:OutputPath="\published\"
+      - name: Restore
+        run: dotnet restore "./RubelhomeworkRepos.sln"
+
+      - name: Build
+        run: dotnet build "./RubelhomeworkRepos.sln" --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish "Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o publish --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -62,4 +66,5 @@ jobs:
           app-name: 'rubelhomework'
           slot-name: 'Production'
           package: .
+
 
