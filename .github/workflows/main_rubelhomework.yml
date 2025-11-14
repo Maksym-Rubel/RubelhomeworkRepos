@@ -41,13 +41,9 @@ jobs:
         with:
           name: api_publish
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'rubelhomework'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
           package: .
