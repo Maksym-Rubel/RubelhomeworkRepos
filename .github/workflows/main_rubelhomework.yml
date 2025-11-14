@@ -25,10 +25,10 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
 
       - name: Restore NuGet packages
-        run: nuget restore
+        run: nuget restore "./Backend/IDK_Api/IDK_Api.csproj"
 
       - name: Publish to folder
-        run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
+        run: msbuild "./Backend/IDK_Api/IDK_Api.csproj" /p:Configuration=Release /p:OutputPath="\published\"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -63,4 +63,5 @@ jobs:
           app-name: 'rubelhomework'
           slot-name: 'Production'
           package: .
+
           
