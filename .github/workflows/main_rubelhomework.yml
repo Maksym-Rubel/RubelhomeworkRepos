@@ -25,8 +25,7 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
 
       - name: Restore NuGet packages
-        run: nuget restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
-
+        run: nuget restore "./RubelhomeworkRepos.sln"
       - name: Publish to folder
         run: msbuild "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" /p:Configuration=Release /p:OutputPath="\published\"
 
@@ -63,3 +62,4 @@ jobs:
           app-name: 'rubelhomework'
           slot-name: 'Production'
           package: .
+
