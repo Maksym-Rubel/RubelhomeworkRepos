@@ -1,4 +1,4 @@
-name: Build and deploy .NET API to Azure Web App - rubelhomework
+name: Build and deploy .NET API to Azure
 
 on:
   push:
@@ -8,42 +8,47 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore dependencies
-        run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
-      - name: Build
-        run: dotnet build "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" --configuration Release --no-restore
+      - name: Restore NuGet packages
+        run: nuget restore "Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
 
-      - name: Publish
-        run: dotnet publish "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o ./publish --no-build
+      - name: Build with MSBuild
+        run: msbuild "Backend/IDK_Api/IDK_Api/IDK_Api.csproj" /p:Configuration=Release /p:OutputPath="published"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api_publish
-          path: ./publish
+          name: api
+          path: published/**/*
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: api_publish
+          name: api
+
+      - name: Azure Login (Service Principal)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'rubelhomework'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
+          app-name: "rubelhomework"
           package: .
