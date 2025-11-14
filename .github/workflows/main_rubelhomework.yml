@@ -15,16 +15,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'   # або твоя версія
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore "./Backend/IDK_Api/IDK_Api.csproj"
+        run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
 
       - name: Build
-        run: dotnet build "./Backend/IDK_Api/IDK_Api.csproj" --configuration Release --no-restore
+        run: dotnet build "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish "./Backend/IDK_Api/IDK_Api.csproj" -c Release -o ./publish --no-build
+        run: dotnet publish "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o ./publish --no-build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
