@@ -1,4 +1,4 @@
-name: Build and deploy ASP.NET Core app to Azure Web App - rubelhomework
+name: Build and Deploy ASP.NET Core App to Azure Web App - rubelhomework
 
 on:
   push:
@@ -8,23 +8,25 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore
+      - name: Restore packages
         run: dotnet restore Backend/IDK_Api/IDK_Api/IDK_Api.csproj
 
-      - name: Publish
+      - name: Publish project
         run: dotnet publish Backend/IDK_Api/IDK_Api/IDK_Api.csproj -c Release -o ./published
 
-      - name: Upload artifact
+      - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
           name: published-app
@@ -33,25 +35,26 @@ jobs:
   deploy:
     runs-on: windows-latest
     needs: build
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
-      - name: Download artifact
+      - name: Download published artifact
         uses: actions/download-artifact@v4
         with:
           name: published-app
           path: ./published
 
-      - name: Login to Azure
+      - name: Azure Login using OIDC
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_544571712AA64A7A9A7BFCE419A95CCF }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C9CDB8C7AA2241CFAEFF34061C1B750A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C1644AEA5FC04272B017388733BFC495 }}
 
-
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
           app-name: rubelhomework
           package: ./published
-
