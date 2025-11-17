@@ -1,55 +1,44 @@
-name: Build and deploy ASP app to Azure Web App - rubelhomework
+name: Build and deploy ASP.NET Core app to Azure Web App - rubelhomework
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
-    permissions:
-      contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1.0.2
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
       - name: Restore
-        run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
-
-      - name: Build
-        run: dotnet build "Backend/IDK_Api/IDK_Api.sln" --configuration Release --no-restore
+        run: dotnet restore Backend/IDK_Api/IDK_Api/IDK_Api.csproj
 
       - name: Publish
-        run: dotnet publish "Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o ./published --no-build
+        run: dotnet publish Backend/IDK_Api/IDK_Api/IDK_Api.csproj -c Release -o ./published
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ASP-app
-          # Завантажуємо саме цю папку
-          path: ./published/**
+          name: published-app
+          path: ./published
 
   deploy:
     runs-on: windows-latest
     needs: build
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ASP-app
-          # Витягуємо artifact назад у ту ж папку
+          name: published-app
           path: ./published
 
       - name: Login to Azure
@@ -60,10 +49,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C1644AEA5FC04272B017388733BFC495 }}
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'rubelhomework'
-          slot-name: 'Production'
-          # ОТУТ головне: вказуємо шлях до опублікованих файлів
+          app-name: rubelhomework
           package: ./published
