@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP.Net Core app to Azure Web App - rubelhomeworkq
+name: Build and deploy ASP app to Azure Web App - rubelhomework
 
 on:
   push:
@@ -13,53 +10,60 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      - name: Restore
+        run: dotnet restore "./Backend/IDK_Api/IDK_Api/IDK_Api.csproj"
+
+      - name: Build
+        run: dotnet build "Backend/IDK_Api/IDK_Api.sln" --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish "Backend/IDK_Api/IDK_Api/IDK_Api.csproj" -c Release -o ./published --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: ASP-app
+          # Завантажуємо саме цю папку
+          path: ./published/**
 
   deploy:
     runs-on: windows-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
-      
+          name: ASP-app
+          # Витягуємо artifact назад у ту ж папку
+          path: ./published
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5712A2A9850E466BB2B43C3655E79AE2 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_938EB053F76A4F508A13D0487841F146 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F8F5CC7BFEE14D06B1F8B8A9141E0AD4 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_544571712AA64A7A9A7BFCE419A95CCF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C9CDB8C7AA2241CFAEFF34061C1B750A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C1644AEA5FC04272B017388733BFC495 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'rubelhomeworkq'
+          app-name: 'rubelhomework'
           slot-name: 'Production'
-          package: .
-          
+          # ОТУТ головне: вказуємо шлях до опублікованих файлів
+          package: ./published
