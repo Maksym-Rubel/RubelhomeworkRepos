@@ -48,8 +48,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C9CDB8C7AA2241CFAEFF34061C1B750A }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C1644AEA5FC04272B017388733BFC495 }}
 
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: rubelhomework
           package: ./published
+
