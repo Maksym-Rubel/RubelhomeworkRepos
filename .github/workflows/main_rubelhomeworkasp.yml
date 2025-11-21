@@ -21,11 +21,11 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build IDK_Api/IDK_Api.csproj --configuration Release
+        run: dotnet build Backend/IDK_Api/IDK_Api.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish IDK_Api/IDK_Api.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
-
+        run: dotnet publish Backend/IDK_Api/IDK_Api.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -58,3 +58,4 @@ jobs:
         with:
           app-name: 'rubelhomeworkasp'
           package: .
+
