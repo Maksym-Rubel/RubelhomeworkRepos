@@ -51,6 +51,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
+          auth-type: ID_TOKEN
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BA626BB8B0A349569C195CBD2EC37841 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C818598E450743E38E18C6364BD03396 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B7AA917E96B84ED784100DC28E3AAAE6 }}
@@ -62,4 +63,5 @@ jobs:
           app-name: 'rubelhomeworkasp'
           slot-name: 'Production'
           package: .
+
           
