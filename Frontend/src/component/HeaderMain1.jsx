@@ -23,7 +23,7 @@ export default function HeaderMain1() {
   function LogoutFrom() {
 
 
-    axios.post(`${API_URL_CON}/api/Account/logout`, {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/Account/logout`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenService.get()}`

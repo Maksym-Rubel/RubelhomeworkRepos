@@ -18,7 +18,7 @@ export default function EditWindow() {
     }
     async function getOneHomeWorkItem() {
         try {
-            var res = await axios.get(`${API_URL_CON}/api/Homework/GetOneHomework?id=${ItemIdCt}`)
+            var res = await axios.get(`${import.meta.env.VITE_API_URL}/api/Homework/GetOneHomework?id=${ItemIdCt}`)
   
             setObjectFet(res.data)
         } catch (error) {

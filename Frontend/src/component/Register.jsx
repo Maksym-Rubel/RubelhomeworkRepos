@@ -25,7 +25,7 @@ export default function Register() {
 
             }
             try {
-                const res = await axios.post(`${API_URL_CON}/api/Account/register`, user)
+                const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/Account/register`, user)
                 if (res.status == 200) {
                     navigate("/")
                 }

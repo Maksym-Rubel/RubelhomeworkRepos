@@ -32,7 +32,7 @@ export default function StartPage() {
   //   return getDay + "." + ((getMonth + 1) < 10 ? "0" + (getMonth + 1) : (getMonth + 1));
   // }
   async function GetItems() {
-    var data = await fetch(`${API_URL_CON}/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
+    var data = await fetch(`${import.meta.env.VITE_API_URL}/api/Homework/GeHomeWorkItems?dateTime=${datetimeValue.format("YYYY-MM-DD")}`);
     var res = await data.json();
     if (res != null) {
       SetRes(res.filter(m => m.isControlWork == false));
@@ -48,7 +48,7 @@ export default function StartPage() {
 
 
 
-    axios.get(`${API_URL_CON}/api/Items/GetAllItem`, {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/Items/GetAllItem`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
 

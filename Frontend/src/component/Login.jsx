@@ -26,7 +26,7 @@ export default function Login() {
       password: PassValue
     }
 
-    axios.post(`${API_URL_CON}/api/Account/login`, user).then(res => {
+    axios.post(`${import.meta.env.VITE_API_URL}/api/Account/login`, user).then(res => {
       if (res.status === 200) {
         accountService.login(res.data.accesessToken, res.data.refreshToken, res.data.role);
 

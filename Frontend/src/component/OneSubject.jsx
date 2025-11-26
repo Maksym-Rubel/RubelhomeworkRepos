@@ -25,7 +25,7 @@ export default function OneSubject({ Id, Title, Description, ItemId }) {
 
     function RemoveItem(Id) {
 
-        axios.delete(`${API_URL_CON}/api/Homework/RemoveItem?Id=${Id}`, {
+        axios.delete(`${import.meta.env.VITE_API_URL}/api/Homework/RemoveItem?Id=${Id}`, {
             headers:
             {
                 Authorization: `Bearer ${tokenService.get()}`
